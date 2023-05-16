@@ -29,4 +29,6 @@ void Point::print()
 
 Point Point::moveTowards(const Point &src, const Point &dest, double distance)
 {
+    // for now so the tests runs
+    return Point(posX, posY);
 }
