@@ -28,6 +28,10 @@ string Ninja::print()
     return "";
 }
 
+int Ninja::getSpeed(){
+    return 0;
+}
+
 const std::type_info &Ninja::getType() const {
     return typeid(Ninja);
 }
