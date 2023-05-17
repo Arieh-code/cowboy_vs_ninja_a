@@ -20,7 +20,7 @@ namespace ariel
         bool isAlive();
         double distance(Character *other);
         void hit(int points);
-        virtual void print();
+        virtual string print();
         // getters and setters
         string getName();
         Point getLocation();

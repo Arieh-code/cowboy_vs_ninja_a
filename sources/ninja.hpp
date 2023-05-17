@@ -16,7 +16,7 @@ namespace ariel
         // functions
         void move(Character *enemy);
         void slash(Character *enemy);
-        void print() override;
+        string print() override;
         const std::type_info &getType() const override;
 
         // getters and setters
@@ -26,16 +26,19 @@ namespace ariel
 
     class OldNinja : public Ninja
     {
+        int speed;
     public:
         OldNinja(string name, Point position);
     };
     class TrainedNinja : public Ninja
     {
+        int speed;
     public:
         TrainedNinja(string name, Point position);
     };
     class YoungNinja : public Ninja
     {
+        int speed;
     public:
         YoungNinja(string name, Point position);
     };

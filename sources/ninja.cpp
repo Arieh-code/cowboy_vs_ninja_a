@@ -7,15 +7,15 @@ Ninja::Ninja(Point position, int score, string name)
 }
 
 OldNinja::OldNinja(string name, Point position)
-    : Ninja(position, 150, name), speed(8)
+    : Ninja(position, 150, name), speed(8) {}
 
-                                      TrainedNinja::TrainedNinja(string name, Point position)
-    : Ninja(position, 120, name), speed(12)
+TrainedNinja::TrainedNinja(string name, Point position)
+    : Ninja(position, 120, name), speed(12) {}
 
-                                      YoungNinja::YoungNinja(string name, Point position)
-    : Ninja(position, 100, name), speed(14)
+YoungNinja::YoungNinja(string name, Point position)
+    : Ninja(position, 100, name), speed(14){}
 
-                                      void Ninja::move(Character * enemy)
+void Ninja::move(Character * enemy)
 {
 }
 
@@ -23,9 +23,9 @@ void Ninja::slash(Character *enemy)
 {
 }
 
-void Ninja::print()
+string Ninja::print()
 {
-    cout << "need to be implemented" << endl;
+    return "";
 }
 
 const std::type_info &Ninja::getType() const {

@@ -6,8 +6,8 @@ Character::Character(Point position, int hits, string name)
     : position(position), hits(hits), name(name)
     {}
 
-bool Character::isValid(){
-    return 1;
+bool Character::isAlive(){
+    return 0;
 }
 
 double Character::distance(Character *other){
@@ -18,8 +18,8 @@ void Character::hit(int points){
 
 }
 
-void Character::print(){
-    cout << "need to be implemented" << endl;
+string Character::print(){
+    return "";
 }
 
 string Character::getName(){
@@ -42,6 +42,6 @@ void Character::setPosition(Point position){
     this->position = position;
 }
 
-const std::type_info Character::getType() const{
-    return typeid(character);
+const std::type_info& Character::getType() const{
+    return typeid(Character);
 }

@@ -17,7 +17,7 @@ namespace ariel
         void shoot(Character *enemy);
         bool has_bullets();
         void reload();
-        void print() override;
+        string print() override;
         const std::type_info& getType() const override;
     };
 }

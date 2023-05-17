@@ -25,8 +25,8 @@ void Cowboy::reload(){
 
 }
 
-void Cowboy::print(){
-    cout << "needs to be implemented" << endl;
+string Cowboy::print(){
+    return "";
 }
 
 const std::type_info& Cowboy::getType() const{
