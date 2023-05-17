@@ -1,0 +1,32 @@
+#pragma once
+#include "point.hpp"
+#include <iostream>
+#include <string>
+using namespace std;
+
+namespace ariel
+{
+    class Character
+    {
+        string name;
+        int hits;
+        Point position;
+
+    public:
+        // constructors
+        Character();
+        Character(Point position, int hits, string name);
+        // functions
+        bool isAlive();
+        double distance(Character *other);
+        void hit(int points);
+        virtual void print();
+        // getters and setters
+        string getName();
+        Point getLocation();
+        int getHits();
+        void setHits(int amount);
+        void setPosition(Point position);
+        virtual const std::type_info &getType() const;
+    };
+}
