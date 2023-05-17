@@ -24,7 +24,7 @@ double Point::distance(const Point &other) const
 
 void Point::print()
 {
-    cout << "( " << x << ", " << y << " )" << endl;
+    cout << "( " << posX << ", " << posY << " )" << endl;
 }
 
 Point Point::moveTowards(const Point &src, const Point &dest, double distance)
@@ -33,6 +33,6 @@ Point Point::moveTowards(const Point &src, const Point &dest, double distance)
     return Point(posX, posY);
 }
 
-bool operator==(const Point &point1, const Point &point2) const{
+bool operator==(const Point &point1, const Point &point2){
     return 1;
 }
