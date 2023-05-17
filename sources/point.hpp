@@ -24,6 +24,7 @@ namespace ariel
         double getX() const;
 
         double getY() const;
+        friend bool operator==(const Point & point1, const Point & point2);
     };
 
 }
