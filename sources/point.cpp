@@ -17,9 +17,9 @@ double Point::getY() const
     return posY;
 }
 
-double Point::Distance(const Point &other) const
+double Point::distance(const Point &other) const
 {
-    return 0;
+    return 0.0;
 }
 
 void Point::print()
