@@ -1,47 +1,93 @@
 #include "character.hpp"
-
+#include "ninja.hpp"
+#include "cowboy.hpp"
 using namespace ariel;
 
 Character::Character(Point position, int hits, string name)
     : position(position), hits(hits), name(name)
-    {}
-
-bool Character::isAlive(){
-    return 0;
+{
 }
 
-double Character::distance(Character *other){
-    return 0.0;
+Character::Character()
+    : position(), hits(0), name("")
+{
 }
 
-void Character::hit(int points){
-
+Character::~Character()
+{
 }
 
-string Character::print(){
-    return "";
+bool Character::isAlive()
+{
+    if (hits > 0)
+    {
+        return true;
+    }
+    return false;
 }
 
-string Character::getName(){
+double Character::distance(Character *other)
+{
+    return position.distance(other->position);
+}
+
+void Character::hit(int points)
+{
+    this->hits -= points;
+}
+
+string Character::print()
+{
+    stringstream print;
+    if (isAlive())
+    {
+        print << name << " " << hits << " " << position.print();
+        return print.str();
+    }
+    if (dynamic_cast<Ninja *>(this) != nullptr)
+    {
+        print << "N"
+              << " (" << name << ")";
+        return print.str();
+    }
+    else if(dynamic_cast<Cowboy *>(this) != nullptr)
+    {
+        print << "C"
+              << " (" << name << ")";
+        return print.str();
+    }
+    else{
+        print << "Unassigned Character " << name;
+        return print.str();
+    }
+}
+
+string Character::getName()
+{
     return name;
 }
 
-Point Character::getLocation(){
+Point Character::getLocation()
+{
     return position;
 }
 
-int Character::getHits(){
+int Character::getHits()
+{
     return hits;
 }
 
-void Character::setHits(int amount){
+void Character::setHits(int amount)
+{
     this->hits = amount;
 }
 
-void Character::setPosition(Point position){
+void Character::setPosition(Point position)
+{
     this->position = position;
 }
 
-const std::type_info& Character::getType() const{
-    return typeid(Character);
+const std::type_info &Character::getType() const
+{
+    return typeid(*this);
 }

@@ -2,6 +2,8 @@
 #include "point.hpp"
 #include <iostream>
 #include <string>
+#include <typeinfo>
+#include <sstream>
 using namespace std;
 
 namespace ariel
@@ -16,6 +18,9 @@ namespace ariel
         // constructors
         Character();
         Character(Point position, int hits, string name);
+
+        // destructor
+        virtual ~Character();
         // functions
         bool isAlive();
         double distance(Character *other);
