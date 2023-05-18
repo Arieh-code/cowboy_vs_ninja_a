@@ -8,6 +8,10 @@ Point::Point(double x, double y)
 {
 }
 
+Point::Point()
+    : posX(0), posY(0)
+{}
+
 double Point::getX() const
 {
     return posX;

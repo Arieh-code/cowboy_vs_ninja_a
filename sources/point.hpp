@@ -14,6 +14,7 @@ namespace ariel
     public:
         // constructor
         Point(double x, double y);
+        Point();
 
         // distance between two points
         double distance(const Point &other) const;
