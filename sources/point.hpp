@@ -1,5 +1,4 @@
-#ifndef POINT_HPP
-#define POINT_HPP
+#pragma once
 
 #include <iostream>
 using namespace std;
@@ -22,11 +21,10 @@ namespace ariel
         Point moveTowards(const Point &src, const Point &dest, double distance);
 
         double getX() const;
-
         double getY() const;
-        // friend bool operator==(const Point & point1, const Point & point2);
+        void setX(double value);
+        void setY(double value);
+        friend bool operator==(const Point &point1, const Point &point2);
     };
 
 }
-
-#endif // POINT_HPP

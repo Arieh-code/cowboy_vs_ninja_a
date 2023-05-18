@@ -33,6 +33,6 @@ Point Point::moveTowards(const Point &src, const Point &dest, double distance)
     return Point(posX, posY);
 }
 
-// bool operator==(const Point &point1, const Point &point2){
-//     return 1;
-// }
+bool operator==(const Point &point1, const Point &point2){
+    return point1.getX() == point2.getX() && point1.getY() == point2.getY();
+}
