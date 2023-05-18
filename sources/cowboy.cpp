@@ -14,21 +14,24 @@ void Cowboy::set_number_of_bullets(int bullets){
 }
 
 void Cowboy::shoot(Character *enemy){
-
+    if(this->isAlive() && number_of_bullets > 0){
+        enemy->hit(10);
+        number_of_bullets -= 1;
+    }
 }
 
 bool Cowboy::has_bullets(){
-    return 1;
+    return number_of_bullets > 0 ?  true : false;
 }
 
 void Cowboy::reload(){
-
+    number_of_bullets = 6;
 }
 
-string Cowboy::print(){
-    return "";
-}
+// string Cowboy::print(){
+//     return "";
+// }
 
-const std::type_info& Cowboy::getType() const{
-    return typeid(Cowboy);
-}
+// const std::type_info& Cowboy::getType() const{
+//     return typeid(Cowboy);
+// }
