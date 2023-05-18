@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+#include <cmath>
+#include <sstream>
 using namespace std;
 
 namespace ariel
@@ -16,7 +18,7 @@ namespace ariel
         // distance between two points
         double distance(const Point &other) const;
 
-        void print();
+        string print();
 
         Point moveTowards(const Point &src, const Point &dest, double distance);
 
