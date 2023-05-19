@@ -18,6 +18,9 @@ void Cowboy::shoot(Character *enemy){
         enemy->hit(10);
         number_of_bullets -= 1;
     }
+    else{
+        reload();
+    }
 }
 
 bool Cowboy::has_bullets(){
