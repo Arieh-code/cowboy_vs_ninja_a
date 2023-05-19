@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <limits>
 #include "character.hpp"
 #include "point.hpp"
 #include "cowboy.hpp"
@@ -12,23 +13,24 @@ namespace ariel
 {
     class Team
     {
-        vector<Cowboy *> cowboys;
-        vector<Ninja *> ninjas;
+        vector<Character *> teamMembers;
         Character *teamLeader;
 
     public:
         // constructor
         Team(Character *leader);
+        // destructor
+        virtual ~Team();
 
         // functions
-        virtual void add(Character *character);
+        void add(Character *character);
         virtual void attack(Team *enemyTeam);
-        virtual int stillAlive();
+        int stillAlive();
         virtual void print();
         virtual void destructor();
-        virtual void setNewLeader();
+        void setNewLeader(Character *character);
         Character *closestVictimToLeader(Team *enemyTeam);
-        bool isNinja(Character *teamMember);
+        void closestToLeader();
         // getters and setters
         Character *getTeamLeader();
     };
