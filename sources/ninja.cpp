@@ -37,6 +37,10 @@ void Ninja::slash(Character *enemy)
     {
         enemy->hit(40);
     }
+    else{
+        move(enemy);
+    }
+    
 }
 
 // string Ninja::print()
