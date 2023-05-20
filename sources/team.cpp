@@ -2,7 +2,7 @@
 using namespace ariel;
 
 Team::Team(Character *teamLeader)
-    : teamLeader(teamLeader), cowboys(), ninjas()
+    : teamLeader(teamLeader), teamMembers()
 {
     this->add(teamLeader);
 }
@@ -18,23 +18,6 @@ void Team::add(Character *character)
         throw runtime_error("Invalid character pointer");
     }
     teamMembers.push_back(character);
-    // Cowboy *cowboyPtr = dynamic_cast<Cowboy *>(character);
-//     if (cowboyPtr)
-//     {
-//         cowboys.push_back(cowboyPtr);
-//     }
-//     else
-//     {
-//         Ninja *ninjaPtr = dynamic_cast<Ninja *>(character);
-//         if (ninjaPtr)
-//         {
-//             ninjas.push_back(ninjaPtr);
-//         }
-//         else
-//         {
-//             throw runtime_error("character is not a ninja or a cowboy");
-//         }
-//     }
 }
 
 void Team::attack(Team *enemyTeam)
@@ -49,30 +32,30 @@ void Team::attack(Team *enemyTeam)
     Character *victim = closestVictimToLeader(enemyTeam);
 
     // check team has people alive and enemy team has people alive
-    while (stillAlive() > 0 && enemyTeam->stillAlive() > 0)
+
+    // attack the chosen victim
+    for (auto &member : teamMembers)
     {
-        // attack the chosen victim
-        for (auto &member : teamMembers)
+        if (!victim->isAlive())
         {
-            if (!victim->isAlive())
-            {
-                victim = closestVictimToLeader(enemyTeam);
-            }
-            else if(dynamic_cast<Cowboy *>(member))
-            {
-                member->shoot(victim);
-            }
+            victim = closestVictimToLeader(enemyTeam);
         }
-        for (auto &member : teamMembers)
+        else if (dynamic_cast<Cowboy *>(member))
         {
-            if (!victim->isAlive())
-            {
-                victim = closestVictimToLeader(enemyTeam);
-            }
-            else if(dynamic_cast<Ninja *>(member))
-            {
-                member->slash(victim);
-            }
+            Cowboy *cowboy = dynamic_cast<Cowboy *>(member);
+            cowboy->shoot(victim);
+        }
+    }
+    for (auto &member : teamMembers)
+    {
+        if (!victim->isAlive())
+        {
+            victim = closestVictimToLeader(enemyTeam);
+        }
+        else if (dynamic_cast<Ninja *>(member))
+        {
+            Ninja *ninja = dynamic_cast<Ninja *>(member);
+            ninja->slash(victim);
         }
     }
 }
@@ -95,13 +78,15 @@ void Team::print()
 {
     for (auto &member : teamMembers)
     {
-        if(dynamic_cast<Cowboy *>(member))
-        member->print();
+        if (dynamic_cast<Cowboy *>(member))
+        {
+            cout << member->print() << endl;
+        }
     }
     for (auto &member : teamMembers)
     {
-        if(dynamic_cast<Ninja *>(member))
-        member->print();
+        if (dynamic_cast<Ninja *>(member))
+            cout << member->print() << endl;
     }
 }
 
@@ -109,13 +94,13 @@ void Team::destructor()
 {
     for (auto &member : teamMembers)
     {
-        if(dynamic_cast<Cowboy *>(member))
-        delete member;
+        if (dynamic_cast<Cowboy *>(member))
+            delete member;
     }
     for (auto &member : teamMembers)
     {
-        if(dynamic_cast<Ninja *>(member))
-        delete member;
+        if (dynamic_cast<Ninja *>(member))
+            delete member;
     }
     teamMembers.clear();
 }
@@ -157,3 +142,6 @@ Character *Team::getTeamLeader()
 {
     return teamLeader;
 }
+
+
+

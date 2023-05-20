@@ -19,6 +19,10 @@ namespace ariel
     public:
         // constructor
         Team(Character *leader);
+        Team(const Team &) = delete;
+        Team &operator=(const Team &) = delete;
+        Team(Team &&) = delete;
+        Team &operator=(Team &&) = delete;
         // destructor
         virtual ~Team();
 
@@ -28,10 +32,11 @@ namespace ariel
         int stillAlive();
         virtual void print();
         virtual void destructor();
-        void setNewLeader(Character *character);
+        
         Character *closestVictimToLeader(Team *enemyTeam);
         void closestToLeader();
         // getters and setters
         Character *getTeamLeader();
+        void setNewLeader(Character *character);
     };
 }
