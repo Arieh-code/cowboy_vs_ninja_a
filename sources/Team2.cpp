@@ -20,7 +20,7 @@ void Team2::attack(Team *enemyTeam)
 {
     if (!this->getTeamLeader()->isAlive())
     {
-        this->closesToLeader();
+        this->closestToLeader();
     }
     // get vector
     vector<Character *> &members = this->getTeamMembers();

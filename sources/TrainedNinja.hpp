@@ -1,5 +1,5 @@
 #pragma once
-#include "Character.hpp"
+#include "Ninja.hpp"
 #include <string>
 #include <iostream>
 using namespace std;

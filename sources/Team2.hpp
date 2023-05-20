@@ -6,6 +6,7 @@ namespace ariel
 {
     class Team2 : public Team
     {
+        vector<Character*> teamMembers;
     public:
         Team2(Character *);
         void print() override;
