@@ -17,6 +17,9 @@ void Team::add(Character *character)
     {
         throw runtime_error("Invalid character pointer");
     }
+    if (teamMembers.size() == 10){
+        throw runtime_error("Team too big");
+    }
     teamMembers.push_back(character);
 }
 
