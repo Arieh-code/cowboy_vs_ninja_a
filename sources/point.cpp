@@ -3,8 +3,8 @@
 
 using namespace ariel;
 
-Point::Point(double x, double y)
-    : posX(x), posY(y)
+Point::Point(double posX, double posY)
+    : posX(posX), posY(posY)
 {
 }
 

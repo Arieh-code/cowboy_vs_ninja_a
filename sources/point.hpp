@@ -13,7 +13,7 @@ namespace ariel
 
     public:
         // constructor
-        Point(double x, double y);
+        Point(double posX, double posY);
         Point();
 
         // distance between two points
