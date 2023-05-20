@@ -32,11 +32,12 @@ namespace ariel
         int stillAlive();
         virtual void print();
         virtual void destructor();
-        
+
         Character *closestVictimToLeader(Team *enemyTeam);
         void closestToLeader();
         // getters and setters
         Character *getTeamLeader();
         void setNewLeader(Character *character);
+        vector<Character *> &getTeamMembers();
     };
 }

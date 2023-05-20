@@ -31,7 +31,6 @@ void Team::attack(Team *enemyTeam)
     // choose a victim to attack
     Character *victim = closestVictimToLeader(enemyTeam);
 
-    // check team has people alive and enemy team has people alive
 
     // attack the chosen victim
     for (auto &member : teamMembers)
@@ -143,5 +142,6 @@ Character *Team::getTeamLeader()
     return teamLeader;
 }
 
-
-
+vector<Character *> &Team::getTeamMembers(){
+    return teamMembers;
+}
