@@ -41,23 +41,23 @@ string Character::print()
     stringstream print;
     if (isAlive())
     {
-        print << name << " " << hits << " " << position.print();
+        print << this->getName() << " " << this->getHits() << " " << this->getLocation().print();
         return print.str();
     }
     if (dynamic_cast<Ninja *>(this) != nullptr)
     {
         print << "N"
-              << " (" << name << ")";
+              << " (" << this->getName() << ")";
         return print.str();
     }
     else if(dynamic_cast<Cowboy *>(this) != nullptr)
     {
         print << "C"
-              << " (" << name << ")";
+              << " (" << this->getName() << ")";
         return print.str();
     }
     else{
-        print << "Unassigned Character " << name;
+        print << "Unassigned Character " << this->getName();
         return print.str();
     }
 }

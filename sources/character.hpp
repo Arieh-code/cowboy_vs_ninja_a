@@ -18,6 +18,10 @@ namespace ariel
         // constructors
         Character();
         Character(Point position, int hits, string name);
+        Character(const Character &) = delete;            // Copy constructor
+        Character &operator=(const Character &) = delete; // Copy assignment operator
+        Character(Character &&) = delete;                 // Move constructor
+        Character &operator=(Character &&) = delete;      // Move assignment operator
 
         // destructor
         virtual ~Character();
@@ -32,6 +36,7 @@ namespace ariel
         int getHits();
         void setHits(int amount);
         void setPosition(Point position);
+        void setName(string name);
         virtual const std::type_info &getType() const;
     };
 }
