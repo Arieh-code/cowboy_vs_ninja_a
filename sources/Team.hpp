@@ -3,10 +3,10 @@
 #include <string>
 #include <vector>
 #include <limits>
-#include "character.hpp"
-#include "point.hpp"
-#include "cowboy.hpp"
-#include "ninja.hpp"
+#include "Character.hpp"
+#include "Point.hpp"
+#include "Cowboy.hpp"
+#include "Ninja.hpp"
 using namespace std;
 
 namespace ariel

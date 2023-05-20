@@ -1,5 +1,5 @@
 #pragma once
-#include "point.hpp"
+#include "Point.hpp"
 #include <iostream>
 #include <string>
 #include <typeinfo>

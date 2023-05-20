@@ -1,4 +1,4 @@
-#include "smartTeam.hpp"
+#include "SmartTeam.hpp"
 using namespace ariel;
 
 SmartTeam::SmartTeam(Character *teamLeader)

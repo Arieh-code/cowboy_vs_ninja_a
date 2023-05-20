@@ -1,6 +1,6 @@
-#include "character.hpp"
-#include "ninja.hpp"
-#include "cowboy.hpp"
+#include "Character.hpp"
+#include "Ninja.hpp"
+#include "Cowboy.hpp"
 using namespace ariel;
 
 Character::Character(Point position, int hits, string name)

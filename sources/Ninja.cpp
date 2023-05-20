@@ -1,4 +1,4 @@
-#include "ninja.hpp"
+#include "Ninja.hpp"
 using namespace ariel;
 
 Ninja::Ninja(Point position, int score, string name)

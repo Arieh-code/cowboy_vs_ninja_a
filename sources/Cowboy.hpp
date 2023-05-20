@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include "character.hpp"
+#include "Character.hpp"
 using namespace std;
 
 namespace ariel

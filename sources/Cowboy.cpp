@@ -1,4 +1,4 @@
-#include "cowboy.hpp"
+#include "Cowboy.hpp"
 using namespace ariel;
 
 Cowboy::Cowboy(string name, Point position)
