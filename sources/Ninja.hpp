@@ -23,19 +23,7 @@ namespace ariel
         void setSpeed(int num);
     };
 
-    class OldNinja : public Ninja
-    {
-    public:
-        OldNinja(string name, Point position);
-    };
-    class TrainedNinja : public Ninja
-    {
-    public:
-        TrainedNinja(string name, Point position);
-    };
-    class YoungNinja : public Ninja
-    {
-    public:
-        YoungNinja(string name, Point position);
-    };
+  
+    
+   
 }

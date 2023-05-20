@@ -6,24 +6,6 @@ Ninja::Ninja(Point position, int score, string name)
 {
 }
 
-OldNinja::OldNinja(string name, Point position)
-    : Ninja(position, 150, name)
-{
-    this -> setSpeed(8);
-}
-
-TrainedNinja::TrainedNinja(string name, Point position)
-    : Ninja(position, 120, name)
-{
-    this->setSpeed(12);
-}
-
-YoungNinja::YoungNinja(string name, Point position)
-    : Ninja(position, 100, name)
-{
-    this->setSpeed(14);
-}
-
 void Ninja::move(Character *enemy)
 {
     Point newLocation = getLocation().moveTowards(getLocation(), enemy->getLocation(), speed);

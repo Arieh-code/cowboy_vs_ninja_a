@@ -7,6 +7,9 @@
 #include "Point.hpp"
 #include "Cowboy.hpp"
 #include "Ninja.hpp"
+#include "YoungNinja.hpp"
+#include "OldNinja.hpp"
+#include "TrainedNinje.hpp"
 using namespace std;
 
 namespace ariel
