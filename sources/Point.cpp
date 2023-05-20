@@ -48,6 +48,9 @@ string Point::print()
 
 Point Point::moveTowards(const Point &src, const Point &dest, double distance)
 {
+    if (distance < 0){
+        throw invalid_argument("distance is negative");
+    }
     if (src.distance(dest) <= distance)
     {
         return dest;
