@@ -8,7 +8,6 @@ namespace ariel
 {
     class Ninja : public Character
     {
-    protected:
         int speed;
 
     public:
@@ -17,8 +16,7 @@ namespace ariel
         // functions
         void move(Character *enemy);
         void slash(Character *enemy);
-        // string print() override;
-        // const std::type_info &getType() const override;
+        
 
         // getters and setters
         int getSpeed();
