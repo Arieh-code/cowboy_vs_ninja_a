@@ -15,7 +15,7 @@ namespace ariel
         int get_number_of_bullets();
         void set_number_of_bullets(int bullets);
         void shoot(Character *enemy);
-        bool has_bullets();
+        bool hasboolets();
         void reload();
     };
 }

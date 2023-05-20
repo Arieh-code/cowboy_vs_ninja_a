@@ -29,7 +29,7 @@ void Cowboy::shoot(Character *enemy)
     }
 }
 
-bool Cowboy::has_bullets()
+bool Cowboy::hasboolets()
 {
     return number_of_bullets > 0 ? true : false;
 }
