@@ -9,7 +9,7 @@
 #include "Ninja.hpp"
 #include "YoungNinja.hpp"
 #include "OldNinja.hpp"
-#include "TrainedNinje.hpp"
+#include "TrainedNinja.hpp"
 using namespace std;
 
 namespace ariel
