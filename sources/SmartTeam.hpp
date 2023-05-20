@@ -10,11 +10,11 @@ namespace ariel{
         vector<Character*> teamMembers;
     public:
         SmartTeam(Character *);
-        void add(Character * character);
-        int stillAlive();
+        void add(Character * character)override ;
+        int stillAlive() override;
         void print() override;
         void attack(Team* enemyTeam) override;
-        void setNewLeader();
+        // void setNewLeader() override;
         void destructor() override;
     };
 }

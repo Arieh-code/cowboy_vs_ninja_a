@@ -21,9 +21,9 @@ void SmartTeam::attack(Team *enemyTeam){
 
 }
 
-void SmartTeam::setNewLeader(){
+// void SmartTeam::setNewLeader(){
 
-}
+// }
 
 void SmartTeam::destructor(){
     
