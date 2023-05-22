@@ -2,9 +2,26 @@
 using namespace ariel;
 
 Team::Team(Character *teamLeader)
-    : teamLeader(teamLeader), teamMembers()
+    : teamMembers()
 {
-    this->add(teamLeader);
+    if (teamLeader == nullptr)
+    {
+        throw invalid_argument("nullptr");
+    }
+    if (!teamLeader->isAlive())
+    {
+        throw invalid_argument("leader must be alive");
+    }
+    if (teamLeader->getInTeam())
+    {
+        throw runtime_error("Leader is in a team already");
+    }
+    else
+    {
+        this->teamLeader = teamLeader;
+        this->teamLeader->setInTeam(true);
+        teamMembers.push_back(teamLeader);
+    }
 }
 
 Team::~Team()
@@ -17,23 +34,41 @@ void Team::add(Character *character)
     {
         throw runtime_error("Invalid character pointer");
     }
-    if (teamMembers.size() == 10){
+    if (teamMembers.size() == 10)
+    {
         throw runtime_error("Team too big");
     }
+    if (!character->isAlive())
+    {
+        throw runtime_error("Member must be alive");
+    }
+    if (character->getInTeam())
+    {
+        throw runtime_error("character already in team");
+    }
     teamMembers.push_back(character);
+    character->setInTeam(true);
 }
 
 void Team::attack(Team *enemyTeam)
-{
-    // check leader is alive
+{ // check leader is alive
+
+    if (enemyTeam == nullptr)
+    {
+        throw invalid_argument("Enemy is nullPrt");
+    }
+
+    if (enemyTeam->stillAlive() == 0)
+    {
+        throw runtime_error("Can't attack dead team");
+    }
+
     if (!teamLeader->isAlive())
     {
         closestToLeader();
     }
-
     // choose a victim to attack
     Character *victim = closestVictimToLeader(enemyTeam);
-
 
     // attack the chosen victim
     for (auto &member : teamMembers)
@@ -45,11 +80,22 @@ void Team::attack(Team *enemyTeam)
         else if (dynamic_cast<Cowboy *>(member))
         {
             Cowboy *cowboy = dynamic_cast<Cowboy *>(member);
-            cowboy->shoot(victim);
+            if (cowboy->isAlive())
+            {
+                cowboy->shoot(victim);
+            }
+        }
+        if (enemyTeam->stillAlive() == 0)
+        {
+            throw runtime_error("Can't attack dead team");
         }
     }
     for (auto &member : teamMembers)
     {
+        if (enemyTeam->stillAlive() == 0)
+        {
+            throw runtime_error("Can't attack dead team");
+        }
         if (!victim->isAlive())
         {
             victim = closestVictimToLeader(enemyTeam);
@@ -57,7 +103,17 @@ void Team::attack(Team *enemyTeam)
         else if (dynamic_cast<Ninja *>(member))
         {
             Ninja *ninja = dynamic_cast<Ninja *>(member);
-            ninja->slash(victim);
+            if (ninja->isAlive())
+            {
+                if (ninja->distance(victim) < 1)
+                {
+                    ninja->slash(victim);
+                }
+                else
+                {
+                    ninja->move(victim);
+                }
+            }
         }
     }
 }
@@ -145,6 +201,7 @@ Character *Team::getTeamLeader()
     return teamLeader;
 }
 
-vector<Character *> &Team::getTeamMembers(){
+vector<Character *> &Team::getTeamMembers()
+{
     return teamMembers;
 }
