@@ -10,8 +10,8 @@ namespace ariel{
         vector<Character*> teamMembers;
     public:
         SmartTeam(Character *);
-        void add(Character * character)override ;
-        int stillAlive() override;
+        void add(Character * character);
+        int stillAlive();
         void print() override;
         void attack(Team* enemyTeam) override;
         // void setNewLeader() override;
