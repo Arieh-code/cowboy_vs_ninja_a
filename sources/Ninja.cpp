@@ -15,17 +15,23 @@ void Ninja::move(Character *enemy)
 
 void Ninja::slash(Character *enemy)
 {
+    if(enemy == this){
+        throw runtime_error("Can't slash yourself");
+    }
+    if(!enemy->isAlive()){
+        throw runtime_error("Can't attack dead enemy");
+    }
+    if(!isAlive()){
+        throw runtime_error("Can't attack while being dead");
+    }
     if (this->isAlive() && distance(enemy) < 1)
     {
         enemy->hit(40);
     }
-    else{
-        move(enemy);
-    }
-    
 }
 
-void Ninja::setSpeed(int speed){
+void Ninja::setSpeed(int speed)
+{
     this->speed = speed;
 }
 
@@ -33,5 +39,3 @@ int Ninja::getSpeed()
 {
     return speed;
 }
-
-
