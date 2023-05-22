@@ -6,11 +6,10 @@ namespace ariel
 {
     class Team2 : public Team
     {
-        vector<Character*> teamMembers;
     public:
-        Team2(Character *);
+        Team2(Character *leader);
         void print() override;
-        void attack(Team* enemyTeam) override;
+        void attack(Team *enemyTeam) override;
         void destructor() override;
     };
 }

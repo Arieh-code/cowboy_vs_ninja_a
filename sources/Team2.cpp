@@ -4,7 +4,8 @@ using namespace ariel;
 Team2::Team2(Character *teamLeader)
     : Team(teamLeader)
 {
-    this->add(teamLeader);
+
+    // this->add(teamLeader);
 }
 
 void Team2::print()
@@ -18,6 +19,12 @@ void Team2::print()
 
 void Team2::attack(Team *enemyTeam)
 {
+    if(enemyTeam == nullptr){
+        throw invalid_argument("Enemy is nullptr");
+    }
+    if(enemyTeam->stillAlive() == 0 ){
+        throw runtime_error("Can't attack dead team");
+    }
     if (!this->getTeamLeader()->isAlive())
     {
         this->closestToLeader();
@@ -30,12 +37,20 @@ void Team2::attack(Team *enemyTeam)
         if (dynamic_cast<Cowboy *>(member))
         {
             Cowboy *cowboy = dynamic_cast<Cowboy *>(member);
+            if(cowboy->isAlive()){
             cowboy->shoot(victim);
+            }
         }
         else if (dynamic_cast<Ninja *>(member))
         {
             Ninja *ninja = dynamic_cast<Ninja *>(member);
-            ninja->slash(victim);
+            if(ninja->isAlive()){
+                if(ninja->distance(victim) < 1){
+                    ninja->slash(victim);
+                }
+                else{ninja->move(victim);
+                }
+            }
         }
         if (!victim->isAlive())
         {
