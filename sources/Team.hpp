@@ -34,7 +34,7 @@ namespace ariel
         virtual void attack(Team *enemyTeam);
         int stillAlive();
         virtual void print();
-        virtual void destructor();
+        // virtual void destructor();
 
         Character *closestVictimToLeader(Team *enemyTeam);
         void closestToLeader();

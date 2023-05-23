@@ -28,15 +28,9 @@ Team::~Team()
 {
     for (auto &member : teamMembers)
     {
-        if (dynamic_cast<Cowboy *>(member))
-            delete member;
+        delete member;
     }
-    for (auto &member : teamMembers)
-    {
-        if (dynamic_cast<Ninja *>(member))
-            delete member;
-    }
-    teamMembers.clear();
+    this->teamMembers.clear();
 }
 
 void Team::add(Character *character)
@@ -99,7 +93,7 @@ void Team::attack(Team *enemyTeam)
         {
             victim = closestVictimToLeader(enemyTeam);
         }
-        else if (dynamic_cast<Cowboy *>(member))
+        if (dynamic_cast<Cowboy *>(member))
         {
             Cowboy *cowboy = dynamic_cast<Cowboy *>(member);
             if (cowboy->isAlive())
@@ -122,7 +116,7 @@ void Team::attack(Team *enemyTeam)
         {
             victim = closestVictimToLeader(enemyTeam);
         }
-        else if (dynamic_cast<Ninja *>(member))
+        if (dynamic_cast<Ninja *>(member))
         {
             Ninja *ninja = dynamic_cast<Ninja *>(member);
             if (ninja->isAlive())
@@ -170,20 +164,20 @@ void Team::print()
     }
 }
 
-void Team::destructor()
-{
-    for (auto &member : teamMembers)
-    {
-        if (dynamic_cast<Cowboy *>(member))
-            delete member;
-    }
-    for (auto &member : teamMembers)
-    {
-        if (dynamic_cast<Ninja *>(member))
-            delete member;
-    }
-    teamMembers.clear();
-}
+// void Team::destructor()
+// {
+//     for (auto &member : teamMembers)
+//     {
+//         if (dynamic_cast<Cowboy *>(member))
+//             delete member;
+//     }
+//     for (auto &member : teamMembers)
+//     {
+//         if (dynamic_cast<Ninja *>(member))
+//             delete member;
+//     }
+//     teamMembers.clear();
+// }
 
 void Team::setNewLeader(Character *character)
 {
@@ -196,9 +190,9 @@ Character *Team::closestVictimToLeader(Team *enemyTeam)
     Character *victim = nullptr;
     for (auto &member : enemyTeam->teamMembers)
     {
-        if (member->distance(teamLeader) < minDistance && member->isAlive())
+        if (teamLeader->distance(member) < minDistance && member->isAlive())
         {
-            minDistance = member->distance(teamLeader);
+            minDistance = teamLeader->distance(member);
             victim = member;
         }
     }
@@ -208,14 +202,20 @@ Character *Team::closestVictimToLeader(Team *enemyTeam)
 void Team::closestToLeader()
 {
     double minDistance = std::numeric_limits<double>::max();
+    Character *temp = nullptr;
     for (auto &member : teamMembers)
     {
+        if (member == teamLeader)
+        {
+            continue;
+        }
         if (teamLeader->distance(member) < minDistance && member->isAlive())
         {
             minDistance = teamLeader->distance(member);
-            this->setNewLeader(member);
+            temp = member;
         }
     }
+    this->setNewLeader(temp);
 }
 
 Character *Team::getTeamLeader()
