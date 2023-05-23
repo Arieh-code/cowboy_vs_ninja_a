@@ -13,6 +13,7 @@ namespace ariel
         string name;
         int hits;
         Point position;
+        bool inTeam = false;
 
     public:
         // constructors
@@ -37,6 +38,8 @@ namespace ariel
         void setHits(int amount);
         void setPosition(Point position);
         void setName(string name);
+        void setInTeam(bool var);
+        bool getInTeam();
         virtual const std::type_info &getType() const;
     };
 }

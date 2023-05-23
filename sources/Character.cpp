@@ -23,7 +23,10 @@ bool Character::isAlive()
     {
         return true;
     }
-    return false;
+    else
+    {
+        return false;
+    }
 }
 
 double Character::distance(Character *other)
@@ -33,6 +36,9 @@ double Character::distance(Character *other)
 
 void Character::hit(int points)
 {
+    if(points < 0){
+        throw invalid_argument("hit is negative");
+    }
     this->hits -= points;
 }
 
@@ -50,13 +56,14 @@ string Character::print()
               << " (" << this->getName() << ")";
         return print.str();
     }
-    else if(dynamic_cast<Cowboy *>(this) != nullptr)
+    else if (dynamic_cast<Cowboy *>(this) != nullptr)
     {
         print << "C"
               << " (" << this->getName() << ")";
         return print.str();
     }
-    else{
+    else
+    {
         print << "Unassigned Character " << this->getName();
         return print.str();
     }
@@ -90,4 +97,14 @@ void Character::setPosition(Point position)
 const std::type_info &Character::getType() const
 {
     return typeid(*this);
+}
+
+bool Character::getInTeam()
+{
+    return inTeam;
+}
+
+void Character::setInTeam(bool var)
+{
+    inTeam = var;
 }
