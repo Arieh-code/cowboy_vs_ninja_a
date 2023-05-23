@@ -26,6 +26,17 @@ Team::Team(Character *teamLeader)
 
 Team::~Team()
 {
+    for (auto &member : teamMembers)
+    {
+        if (dynamic_cast<Cowboy *>(member))
+            delete member;
+    }
+    for (auto &member : teamMembers)
+    {
+        if (dynamic_cast<Ninja *>(member))
+            delete member;
+    }
+    teamMembers.clear();
 }
 
 void Team::add(Character *character)
@@ -57,22 +68,33 @@ void Team::attack(Team *enemyTeam)
     {
         throw invalid_argument("Enemy is nullPrt");
     }
-
+    if (enemyTeam == this)
+    {
+        throw runtime_error("Can't attack yourself");
+    }
     if (enemyTeam->stillAlive() == 0)
     {
         throw runtime_error("Can't attack dead team");
     }
-
-    if (!teamLeader->isAlive())
+    if (stillAlive() == 0)
     {
-        closestToLeader();
+        throw runtime_error("Can't attack while team is dead");
     }
+
     // choose a victim to attack
     Character *victim = closestVictimToLeader(enemyTeam);
 
     // attack the chosen victim
     for (auto &member : teamMembers)
     {
+        if (enemyTeam->stillAlive() == 0)
+        {
+            return;
+        }
+        if (!teamLeader->isAlive())
+        {
+            closestToLeader();
+        }
         if (!victim->isAlive())
         {
             victim = closestVictimToLeader(enemyTeam);
@@ -85,16 +107,16 @@ void Team::attack(Team *enemyTeam)
                 cowboy->shoot(victim);
             }
         }
-        if (enemyTeam->stillAlive() == 0)
-        {
-            throw runtime_error("Can't attack dead team");
-        }
     }
     for (auto &member : teamMembers)
     {
         if (enemyTeam->stillAlive() == 0)
         {
-            throw runtime_error("Can't attack dead team");
+            return;
+        }
+        if (!teamLeader->isAlive())
+        {
+            closestToLeader();
         }
         if (!victim->isAlive())
         {
