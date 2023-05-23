@@ -19,42 +19,59 @@ void Team2::print()
 
 void Team2::attack(Team *enemyTeam)
 {
-    if(enemyTeam == nullptr){
+    if (enemyTeam == nullptr)
+    {
         throw invalid_argument("Enemy is nullptr");
     }
-    if(enemyTeam->stillAlive() == 0 ){
+    if (enemyTeam->stillAlive() == 0)
+    {
         throw runtime_error("Can't attack dead team");
     }
-    if (!this->getTeamLeader()->isAlive())
+    if (this == enemyTeam)
     {
-        this->closestToLeader();
+        throw runtime_error("Can't attack yourself");
     }
+
     // get vector
     vector<Character *> &members = this->getTeamMembers();
     Character *victim = this->closestVictimToLeader(enemyTeam);
     for (auto &member : members)
     {
+        if (enemyTeam->stillAlive() == 0)
+        {
+            return;
+        }
+
+        if (!this->getTeamLeader()->isAlive())
+        {
+            this->closestToLeader();
+        }
+        if (!victim->isAlive())
+        {
+            victim = this->closestVictimToLeader(enemyTeam);
+        }
         if (dynamic_cast<Cowboy *>(member))
         {
             Cowboy *cowboy = dynamic_cast<Cowboy *>(member);
-            if(cowboy->isAlive()){
-            cowboy->shoot(victim);
+            if (cowboy->isAlive())
+            {
+                cowboy->shoot(victim);
             }
         }
         else if (dynamic_cast<Ninja *>(member))
         {
             Ninja *ninja = dynamic_cast<Ninja *>(member);
-            if(ninja->isAlive()){
-                if(ninja->distance(victim) < 1){
+            if (ninja->isAlive())
+            {
+                if (ninja->distance(victim) < 1)
+                {
                     ninja->slash(victim);
                 }
-                else{ninja->move(victim);
+                else
+                {
+                    ninja->move(victim);
                 }
             }
-        }
-        if (!victim->isAlive())
-        {
-            victim = this->closestVictimToLeader(enemyTeam);
         }
     }
 }
