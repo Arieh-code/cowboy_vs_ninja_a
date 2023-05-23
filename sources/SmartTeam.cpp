@@ -25,6 +25,6 @@ void SmartTeam::attack(Team *enemyTeam){
 
 // }
 
-void SmartTeam::destructor(){
+// void SmartTeam::destructor(){
     
-}
+// }

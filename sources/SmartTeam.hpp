@@ -15,6 +15,6 @@ namespace ariel{
         void print() override;
         void attack(Team* enemyTeam) override;
         // void setNewLeader() override;
-        void destructor() override;
+        // void destructor() override;
     };
 }
