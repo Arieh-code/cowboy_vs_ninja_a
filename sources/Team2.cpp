@@ -4,8 +4,6 @@ using namespace ariel;
 Team2::Team2(Character *teamLeader)
     : Team(teamLeader)
 {
-
-    // this->add(teamLeader);
 }
 
 void Team2::print()
@@ -23,18 +21,21 @@ void Team2::attack(Team *enemyTeam)
     {
         throw invalid_argument("Enemy is nullptr");
     }
-    if (enemyTeam->stillAlive() == 0)
-    {
-        throw runtime_error("Can't attack dead team");
-    }
     if (this == enemyTeam)
     {
         throw runtime_error("Can't attack yourself");
     }
-
+    if (enemyTeam->stillAlive() == 0)
+    {
+        throw runtime_error("Can't attack dead team");
+    }
+    if(stillAlive() == 0){
+        throw runtime_error("Can't attack when team is dead");
+    }
+    
     // get vector
-    vector<Character *> &members = this->getTeamMembers();
-    Character *victim = this->closestVictimToLeader(enemyTeam);
+    vector<Character *> &members = getTeamMembers();
+    Character *victim = closestVictimToLeader(enemyTeam);
     for (auto &member : members)
     {
         if (enemyTeam->stillAlive() == 0)
@@ -42,13 +43,13 @@ void Team2::attack(Team *enemyTeam)
             return;
         }
 
-        if (!this->getTeamLeader()->isAlive())
+        if (!getTeamLeader()->isAlive())
         {
-            this->closestToLeader();
+            closestToLeader();
         }
         if (!victim->isAlive())
         {
-            victim = this->closestVictimToLeader(enemyTeam);
+            victim = closestVictimToLeader(enemyTeam);
         }
         if (dynamic_cast<Cowboy *>(member))
         {
@@ -58,7 +59,7 @@ void Team2::attack(Team *enemyTeam)
                 cowboy->shoot(victim);
             }
         }
-        else if (dynamic_cast<Ninja *>(member))
+        if (dynamic_cast<Ninja *>(member))
         {
             Ninja *ninja = dynamic_cast<Ninja *>(member);
             if (ninja->isAlive())
@@ -73,15 +74,20 @@ void Team2::attack(Team *enemyTeam)
                 }
             }
         }
+         if (!getTeamLeader()->isAlive())
+        {
+            closestToLeader();
+        }
+
     }
 }
 
-void Team2::destructor()
-{
-    vector<Character *> &members = this->getTeamMembers();
-    for (auto &member : members)
-    {
-        delete member;
-    }
-    members.clear();
-}
+// void Team2::destructor()
+// {
+//     vector<Character *> &members = this->getTeamMembers();
+//     for (auto &member : members)
+//     {
+//         delete member;
+//     }
+//     members.clear();
+// }

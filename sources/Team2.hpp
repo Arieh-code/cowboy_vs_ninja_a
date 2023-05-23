@@ -1,5 +1,6 @@
 #pragma once
 #include "Team.hpp"
+#include <iostream>
 using namespace std;
 
 namespace ariel
@@ -10,6 +11,6 @@ namespace ariel
         Team2(Character *leader);
         void print() override;
         void attack(Team *enemyTeam) override;
-        void destructor() override;
+        // void destructor() override;
     };
 }
