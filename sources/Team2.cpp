@@ -82,12 +82,4 @@ void Team2::attack(Team *enemyTeam)
     }
 }
 
-// void Team2::destructor()
-// {
-//     vector<Character *> &members = this->getTeamMembers();
-//     for (auto &member : members)
-//     {
-//         delete member;
-//     }
-//     members.clear();
-// }
+

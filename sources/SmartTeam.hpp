@@ -3,18 +3,16 @@
 #include <string>
 #include <vector>
 #include "Team.hpp"
+#include <limits>
 using namespace std;
 
-namespace ariel{
-    class SmartTeam : public Team{
-        vector<Character*> teamMembers;
+namespace ariel
+{
+    class SmartTeam : public Team
+    {
     public:
         SmartTeam(Character *);
-        void add(Character * character);
-        int stillAlive();
-        void print() override;
-        void attack(Team* enemyTeam) override;
-        // void setNewLeader() override;
-        // void destructor() override;
+        void attack(Team *enemyTeam) override;
+        vector<int> distanceMatrix(Team * enemyTeam);
     };
 }
